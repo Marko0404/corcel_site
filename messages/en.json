@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "services": "Services",
+    "about": "About",
+    "blog": "Blog",
+    "calculator": "Calculator",
+    "contact": "Contact",
+    "cta": "Get a Quote"
+  },
+  "hero": {
+    "badge": "Trusted Logistics Since 2008",
+    "title": "We Deliver Cargo Worldwide",
+    "subtitle": "Road, air, sea and rail — comprehensive logistics solutions for your business",
+    "cta_primary": "Get a Quote",
+    "cta_secondary": "Our Services"
+  },
+  "stats": {
+    "founded": "Founded",
+    "clients": "Clients",
+    "countries": "Countries",
+    "offices": "Offices"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Full range of logistics solutions for your business",
+    "auto": {
+      "title": "Road Freight",
+      "desc": "Cargo delivery across Europe and CIS. FTL, LTL, refrigerated, oversized."
+    },
+    "air": {
+      "title": "Air Freight",
+      "desc": "Fast worldwide delivery. Urgent shipments and scheduled flights."
+    },
+    "sea": {
+      "title": "Sea Containers",
+      "desc": "FCL and LCL shipments. All major sea routes and ports worldwide."
+    },
+    "rail": {
+      "title": "Rail Freight",
+      "desc": "Container and wagon shipments. Cost-effective alternative to sea freight."
+    },
+    "warehouse": {
+      "title": "Warehouse Services",
+      "desc": "Storage, handling and order fulfilment. Bonded and general warehousing."
+    },
+    "customs": {
+      "title": "Customs Services",
+      "desc": "Customs clearance, brokerage, certification and permits worldwide."
+    }
+  },
+  "why": {
+    "title": "Why Choose Corcel",
+    "subtitle": "Over 15 years of building trust through results",
+    "experience": {
+      "title": "15+ Years Experience",
+      "desc": "Founded in 2008. We've navigated crises, pandemics and challenges — and kept growing."
+    },
+    "global": {
+      "title": "Global Network",
+      "desc": "Partners in 50+ countries. Own offices in Ukraine, Poland and Spain."
+    },
+    "speed": {
+      "title": "Speed & Reliability",
+      "desc": "Real-time tracking for every shipment. We always know where your cargo is."
+    },
+    "support": {
+      "title": "24/7 Support",
+      "desc": "A dedicated manager for every client. We respond at any time, day or night."
+    }
+  },
+  "offices": {
+    "title": "Our Offices",
+    "subtitle": "Present in key European logistics hubs",
+    "ukraine": {
+      "city": "Kyiv, Ukraine",
+      "address": "Khreshchatyk St, 1"
+    },
+    "poland": {
+      "city": "Warsaw, Poland",
+      "address": "ul. Marszałkowska, 1"
+    },
+    "spain": {
+      "city": "Madrid, Spain",
+      "address": "Calle Gran Vía, 1"
+    }
+  },
+  "calculator": {
+    "title": "Calculate Shipping Cost",
+    "subtitle": "Submit a request — a manager will calculate the exact cost and contact you within 1 hour",
+    "from": "From",
+    "to": "To",
+    "type": "Cargo type",
+    "weight": "Weight (kg)",
+    "volume": "Volume (m³)",
+    "service": "Shipping type",
+    "name": "Your name",
+    "phone": "Phone",
+    "email": "Email",
+    "submit": "Get a Quote",
+    "services": {
+      "auto": "Road freight",
+      "air": "Air",
+      "sea": "Sea",
+      "rail": "Rail"
+    }
+  },
+  "blog": {
+    "title": "Blog & News",
+    "subtitle": "Useful insights on logistics and international shipping",
+    "read_more": "Read more",
+    "all_posts": "All articles"
+  },
+  "footer": {
+    "tagline": "Trusted Logistics Since 2008",
+    "services": "Services",
+    "company": "Company",
+    "contacts": "Contacts",
+    "rights": "All rights reserved",
+    "privacy": "Privacy Policy"
+  }
+}
