@@ -73,20 +73,14 @@
   },
   "off": {
     "eyebrow": "Presence",
-    "title": "8 own offices. 20+ partner countries.",
+    "title": "7 own offices. 20+ partner countries.",
     "sub": "Own transport, warehouses and customs representations across Europe. Partner offices on key global routes.",
     "ua": "Ukraine · Headquarters",
     "ua2": "Ukraine",
     "pl": "Poland",
     "es": "Spain",
-    "kyiv": { "addr": "100 Velyka Vasylkivska St." },
-    "lviv": { "addr": "174 Horodotska St." },
-    "odesa": { "addr": "Seaport, Terminal B" },
-    "dnipro": { "addr": "50 Dmytra Yavornytskoho Ave." },
-    "kharkiv": { "addr": "56 Poltavskyi Shliakh St." },
-    "warsaw": { "addr": "142 Marszałkowska St." },
-    "gdansk": { "addr": "Port Gdańsk, DCT Terminal" },
-    "madrid": { "addr": "256 Calle de Alcalá" }
+    "partners_t": "20+ partner countries",
+    "partners_s": "Direct agency agreements on all key trade lanes"
   },
   "routes": {
     "eyebrow": "Routes",
@@ -109,10 +103,10 @@
     "eyebrow": "Get in touch",
     "title": "Ready to ship?",
     "sub": "Leave a request — a dedicated manager will reach out within 30 minutes with a tailored offer.",
-    "phone": "Phone",
+    "phone": "Phones",
     "email": "Email",
     "hq": "Headquarters",
-    "hqAddr": "Kyiv, 100 Velyka Vasylkivska St.",
+    "hqAddr": "Kyiv, 33B Tarasa Shevchenka Blvd, 01032",
     "hours": "Working hours",
     "hoursV": "Mon–Fri · 09:00–19:00 (CET)"
   },
@@ -122,7 +116,7 @@
     "phone": "Phone",
     "email": "Email",
     "service": "Service",
-    "budget": "Estimated budget",
+    "mailLabel": "Or write to us directly",
     "msg": "Cargo description / request",
     "svc": {
       "auto": "Road freight",

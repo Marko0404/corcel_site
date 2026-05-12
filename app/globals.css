@@ -155,6 +155,30 @@ img { display: block; max-width: 100%; }
   0%, 100% { transform: translate(0,0) scale(1); }
   50% { transform: translate(-30px,40px) scale(1.08); }
 }
+.truck {
+  position: absolute; right: -12%; top: 50%; transform: translateY(-50%);
+  width: min(58vw, 820px); pointer-events: none; z-index: 0;
+  opacity: 0; animation: truckIn 1.4s .3s cubic-bezier(.22,1,.36,1) forwards;
+  filter: drop-shadow(0 40px 60px rgba(0,0,0,.18));
+}
+.truck img { width: 100%; height: auto; display: block; }
+@keyframes truckIn {
+  0% { transform: translate(40%,-50%); opacity: 0; }
+  60% { opacity: 1; }
+  100% { transform: translate(0,-50%); opacity: 1; }
+}
+.road {
+  position: absolute; bottom: 60px; left: 0; right: -20%; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,.08) 30%, rgba(0,0,0,.08) 70%, transparent);
+  z-index: -1;
+}
+.road::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background-image: repeating-linear-gradient(90deg, var(--red) 0 24px, transparent 24px 60px);
+  opacity: .7; animation: dash 1.2s linear infinite;
+}
+@keyframes dash { to { background-position: 60px 0; } }
+@media (max-width: 880px) { .truck { display: none; } }
 
 /* MARQUEE */
 .marquee {
@@ -416,6 +440,40 @@ section.s { padding: 120px 28px; }
 .form-ok h3 { font-size: 28px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 8px; }
 .form-ok p { color: var(--muted); }
 @media (max-width: 920px) { .contact-wrap { grid-template-columns: 1fr; } .form-grid { grid-template-columns: 1fr; } .form-field.full { grid-column: span 1; } }
+.form-mail {
+  margin-top: 18px; display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px; border: 1px dashed rgba(0,0,0,.18); border-radius: 14px;
+  text-decoration: none; color: var(--ink); transition: all .25s;
+}
+.form-mail:hover { border-color: var(--red); background: rgba(227,6,19,.03); transform: translateY(-1px); }
+.form-mail-ico {
+  width: 36px; height: 36px; border-radius: 10px; background: var(--bg-soft);
+  display: flex; align-items: center; justify-content: center; color: var(--red); flex-shrink: 0;
+}
+.form-mail-ico svg { width: 18px; height: 18px; }
+.form-mail-l { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.form-mail-l small { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.form-mail-l b { font-size: 15px; font-weight: 600; color: var(--ink); letter-spacing: -.005em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.form-mail .arr { font-size: 18px; color: var(--muted); transition: transform .3s cubic-bezier(.2,.8,.2,1), color .25s; }
+.form-mail:hover .arr { transform: translateX(4px); color: var(--red); }
+
+/* PARTNERS */
+.partners { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--line); }
+.partners-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 28px; flex-wrap: wrap; }
+.partners-h { font-size: 28px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); }
+.partners-s { font-size: 15px; color: var(--muted); max-width: 420px; }
+.flags { display: grid; grid-template-columns: repeat(6,1fr); gap: 10px; }
+.flag {
+  display: flex; align-items: center; gap: 12px; padding: 14px 16px;
+  background: #fff; border: 1px solid var(--line); border-radius: 16px;
+  transition: all .35s cubic-bezier(.2,.8,.2,1); cursor: default;
+}
+.flag:hover { transform: translateY(-3px); border-color: rgba(0,0,0,.18); box-shadow: 0 20px 40px -25px rgba(0,0,0,.2); }
+.flag-emoji { font-size: 22px; line-height: 1; flex-shrink: 0; }
+.flag-name { font-size: 13px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 1080px) { .flags { grid-template-columns: repeat(4,1fr); } }
+@media (max-width: 720px) { .flags { grid-template-columns: repeat(3,1fr); } }
+@media (max-width: 480px) { .flags { grid-template-columns: repeat(2,1fr); } .partners-h { font-size: 22px; } }
 
 /* FOOTER */
 footer { padding: 64px 28px 40px; border-top: 1px solid var(--line); }

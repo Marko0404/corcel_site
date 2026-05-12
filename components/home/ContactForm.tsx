@@ -27,7 +27,9 @@ export default function ContactForm() {
                   </div>
                   <div>
                     <div className="contact-item-l">{t('phone')}</div>
-                    <div className="contact-item-v">+380 44 000 00 00</div>
+                    <div className="contact-item-v" style={{ lineHeight: 1.6 }}>
+                      UA +38 044 333 32 28<br />ES +34 91 901 81 15<br />PL +48 (42) 203 61 44
+                    </div>
                   </div>
                 </div>
                 <div className="contact-item">
@@ -38,7 +40,7 @@ export default function ContactForm() {
                   </div>
                   <div>
                     <div className="contact-item-l">{t('email')}</div>
-                    <div className="contact-item-v">hello@corcel.com.ua</div>
+                    <div className="contact-item-v">logistic@corcel.com.ua</div>
                   </div>
                 </div>
                 <div className="contact-item">
@@ -109,20 +111,23 @@ export default function ContactForm() {
                         <option>{tf('svc.wh')}</option>
                       </select>
                     </div>
-                    <div className="form-field">
-                      <label>{tf('budget')}</label>
-                      <select>
-                        <option>{tf('b1')}</option>
-                        <option>{tf('b2')}</option>
-                        <option>{tf('b3')}</option>
-                        <option>{tf('b4')}</option>
-                      </select>
-                    </div>
                     <div className="form-field full">
                       <label>{tf('msg')}</label>
                       <textarea placeholder="..." />
                     </div>
                   </div>
+                  <a className="form-mail" href="mailto:logistic@corcel.com.ua">
+                    <div className="form-mail-ico">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/>
+                      </svg>
+                    </div>
+                    <div className="form-mail-l">
+                      <small>{tf('mailLabel')}</small>
+                      <b>logistic@corcel.com.ua</b>
+                    </div>
+                    <span className="arr">→</span>
+                  </a>
                   <div className="form-foot">
                     <div className="form-consent">{tf('consent')}</div>
                     <button type="submit" className="btn btn-primary">

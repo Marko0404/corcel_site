@@ -30,8 +30,7 @@ export default function Header() {
         <div className="nav-links">
           <a href="#services">{t('services')}</a>
           <a href="#calculator">{t('calc')}</a>
-          <a href="#routes">{t('routes')}</a>
-          <a href="#offices">{t('offices')}</a>
+          <Link href={`/${locale}/blog`}>{t('blog')}</Link>
           <a href="#contact">{t('contact')}</a>
         </div>
 

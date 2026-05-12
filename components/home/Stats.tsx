@@ -60,7 +60,7 @@ export default function Stats() {
           </Reveal>
           <Reveal delay="d1">
             <div className="stat">
-              <div className="stat-num"><Counter target={8} /></div>
+              <div className="stat-num"><Counter target={7} /></div>
               <div className="stat-label">{t('offices')}</div>
             </div>
           </Reveal>

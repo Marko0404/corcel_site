@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 export default function Hero() {
@@ -11,6 +12,10 @@ export default function Hero() {
         <div className="hero-deco">
           <div className="blob blob-1" />
           <div className="blob blob-2" />
+          <div className="road" />
+        </div>
+        <div className="truck">
+          <Image src="/images/truck.png" alt="Corcel truck" width={820} height={460} priority />
         </div>
         <div className="hero-inner">
           <div className="eyebrow">

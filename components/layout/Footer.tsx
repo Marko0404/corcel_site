@@ -41,8 +41,10 @@ export default async function Footer() {
         <div>
           <h5>{t('h.contact')}</h5>
           <ul>
-            <li><a href="tel:+380440000000">+380 44 000 00 00</a></li>
-            <li><a href="mailto:hello@corcel.com.ua">hello@corcel.com.ua</a></li>
+            <li><a href="tel:+380443333228">UA +38 044 333 32 28</a></li>
+            <li><a href="tel:+34919018115">ES +34 91 901 81 15</a></li>
+            <li><a href="tel:+48422036144">PL +48 (42) 203 61 44</a></li>
+            <li><a href="mailto:logistic@corcel.com.ua">logistic@corcel.com.ua</a></li>
             <li><a href="#offices">{t('l.addr')}</a></li>
           </ul>
         </div>
