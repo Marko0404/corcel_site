@@ -1,121 +1,154 @@
 {
   "nav": {
     "services": "Services",
-    "about": "About",
-    "blog": "Blog",
-    "calculator": "Calculator",
+    "calc": "Calculator",
+    "routes": "Routes",
+    "offices": "Offices",
     "contact": "Contact",
-    "cta": "Get a Quote"
+    "cta": "Get a quote",
+    "blog": "Blog",
+    "career": "Careers"
   },
   "hero": {
-    "badge": "Trusted Logistics Since 2008",
-    "title": "We Deliver Cargo Worldwide",
-    "subtitle": "Road, air, sea and rail — comprehensive logistics solutions for your business",
-    "cta_primary": "Get a Quote",
-    "cta_secondary": "Our Services"
+    "eyebrow": "European logistics since 2008",
+    "t1": "Delivered.",
+    "t2": "Anywhere.",
+    "t3": "On time.",
+    "sub": "Full-cycle international logistics from Ukraine to Europe and beyond. Road, air, sea, rail, customs and warehousing — in one system.",
+    "cta1": "Calculate cost",
+    "cta2": "Services",
+    "track": "Track shipment",
+    "trackBtn": "Find"
   },
-  "stats": {
-    "founded": "Founded",
-    "clients": "Clients",
-    "countries": "Countries",
-    "offices": "Offices"
+  "svc": {
+    "eyebrow": "Services",
+    "title": "Six modes. One team.",
+    "sub": "Every mode is run by a dedicated dispatch center with its own insurance and SLA.",
+    "auto": { "t": "Road freight", "d": "Own fleet and vetted partners across Ukraine — EU — Asia. Tilts, reefers, oversized cargo." },
+    "air": { "t": "Air", "d": "Urgent shipments worldwide in 2–5 days. Project charters on demand." },
+    "sea": { "t": "Ocean freight", "d": "FCL and LCL container shipments. Direct contracts with leading ocean carriers. Booking and tracking in one dashboard." },
+    "rail": { "t": "Rail", "d": "Container trains Europe — China. Platforms, wagons, leasing." },
+    "cust": { "t": "Customs", "d": "Own customs representations across Europe. Brokerage, classification, permits." },
+    "wh": { "t": "Warehousing", "d": "Own class A/B warehouses in Ukraine and the EU. Storage, cross-docking, fulfilment." },
+    "more": "Learn more",
+    "tag": { "group": "Groupage" }
   },
-  "services": {
-    "title": "Our Services",
-    "subtitle": "Full range of logistics solutions for your business",
-    "auto": {
-      "title": "Road Freight",
-      "desc": "Cargo delivery across Europe and CIS. FTL, LTL, refrigerated, oversized."
-    },
-    "air": {
-      "title": "Air Freight",
-      "desc": "Fast worldwide delivery. Urgent shipments and scheduled flights."
-    },
-    "sea": {
-      "title": "Sea Containers",
-      "desc": "FCL and LCL shipments. All major sea routes and ports worldwide."
-    },
-    "rail": {
-      "title": "Rail Freight",
-      "desc": "Container and wagon shipments. Cost-effective alternative to sea freight."
-    },
-    "warehouse": {
-      "title": "Warehouse Services",
-      "desc": "Storage, handling and order fulfilment. Bonded and general warehousing."
-    },
-    "customs": {
-      "title": "Customs Services",
-      "desc": "Customs clearance, brokerage, certification and permits worldwide."
-    }
-  },
-  "why": {
-    "title": "Why Choose Corcel",
-    "subtitle": "Over 15 years of building trust through results",
-    "experience": {
-      "title": "15+ Years Experience",
-      "desc": "Founded in 2008. We've navigated crises, pandemics and challenges — and kept growing."
-    },
-    "global": {
-      "title": "Global Network",
-      "desc": "Partners in 50+ countries. Own offices in Ukraine, Poland and Spain."
-    },
-    "speed": {
-      "title": "Speed & Reliability",
-      "desc": "Real-time tracking for every shipment. We always know where your cargo is."
-    },
-    "support": {
-      "title": "24/7 Support",
-      "desc": "A dedicated manager for every client. We respond at any time, day or night."
-    }
-  },
-  "offices": {
-    "title": "Our Offices",
-    "subtitle": "Present in key European logistics hubs",
-    "ukraine": {
-      "city": "Kyiv, Ukraine",
-      "address": "Khreshchatyk St, 1"
-    },
-    "poland": {
-      "city": "Warsaw, Poland",
-      "address": "ul. Marszałkowska, 1"
-    },
-    "spain": {
-      "city": "Madrid, Spain",
-      "address": "Calle Gran Vía, 1"
-    }
-  },
-  "calculator": {
-    "title": "Calculate Shipping Cost",
-    "subtitle": "Submit a request — a manager will calculate the exact cost and contact you within 1 hour",
+  "calc": {
+    "eyebrow": "Smart calculator",
+    "title": "Get a price in 30 seconds.",
+    "sub": "Enter your shipment parameters — receive a preliminary cost breakdown and ETA instantly.",
+    "m": { "auto": "Road", "air": "Air", "sea": "Sea", "rail": "Rail" },
     "from": "From",
     "to": "To",
-    "type": "Cargo type",
-    "weight": "Weight (kg)",
-    "volume": "Volume (m³)",
-    "service": "Shipping type",
-    "name": "Your name",
-    "phone": "Phone",
-    "email": "Email",
-    "submit": "Get a Quote",
-    "services": {
-      "auto": "Road freight",
-      "air": "Air",
-      "sea": "Sea",
-      "rail": "Rail"
+    "weight": "Weight, kg",
+    "vol": "Volume, m³",
+    "urgency": "Urgency",
+    "urg": { "std": "Standard", "fast": "Fast", "exp": "Express" },
+    "cust": "Customs clearance",
+    "cust_no": "Not required",
+    "cust_yes": "Standard",
+    "cust_full": "Full (all documents)",
+    "ins": "Insurance",
+    "ins_no": "No insurance",
+    "ins_std": "Up to €50,000",
+    "ins_ext": "Up to €200,000",
+    "r": {
+      "label": "Estimated cost",
+      "transport": "Transport",
+      "cust": "Customs",
+      "ins": "Insurance",
+      "urg": "Urgency factor",
+      "eta": "Delivery time",
+      "days": "days",
+      "cta": "Book this shipment"
     }
   },
-  "blog": {
-    "title": "Blog & News",
-    "subtitle": "Useful insights on logistics and international shipping",
-    "read_more": "Read more",
-    "all_posts": "All articles"
+  "stats": {
+    "eyebrow": "Numbers",
+    "title": "Logistics trusted since 2008.",
+    "years": "Years on the market",
+    "offices": "Own offices",
+    "countries": "Partner countries",
+    "shipments": "Shipments per year"
   },
-  "footer": {
-    "tagline": "Trusted Logistics Since 2008",
-    "services": "Services",
+  "off": {
+    "eyebrow": "Presence",
+    "title": "8 own offices. 20+ partner countries.",
+    "sub": "Own transport, warehouses and customs representations across Europe. Partner offices on key global routes.",
+    "ua": "Ukraine · Headquarters",
+    "ua2": "Ukraine",
+    "pl": "Poland",
+    "es": "Spain",
+    "kyiv": { "addr": "100 Velyka Vasylkivska St." },
+    "lviv": { "addr": "174 Horodotska St." },
+    "odesa": { "addr": "Seaport, Terminal B" },
+    "dnipro": { "addr": "50 Dmytra Yavornytskoho Ave." },
+    "kharkiv": { "addr": "56 Poltavskyi Shliakh St." },
+    "warsaw": { "addr": "142 Marszałkowska St." },
+    "gdansk": { "addr": "Port Gdańsk, DCT Terminal" },
+    "madrid": { "addr": "256 Calle de Alcalá" }
+  },
+  "routes": {
+    "eyebrow": "Routes",
+    "title": "A single network from Kyiv to Shanghai.",
+    "sub": "Own offices and partner hubs on every key lane. We see your cargo on every leg.",
+    "s1": "Sea corridors",
+    "s2": "Rail routes",
+    "s3": "Own warehouses",
+    "s4": "Road directions"
+  },
+  "proc": {
+    "eyebrow": "How we work",
+    "title": "Four steps — and your cargo is on the road.",
+    "s1": { "t": "Request", "d": "Send shipment details. Get a rate and a draft route within 30 minutes." },
+    "s2": { "t": "Approval", "d": "We sign the contract and insure the cargo. A dedicated manager is assigned." },
+    "s3": { "t": "In transit", "d": "Track from your dashboard. Get notified at every milestone." },
+    "s4": { "t": "Delivery", "d": "Customs, unloading, documents. Close the deal in one click." }
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "title": "Ready to ship?",
+    "sub": "Leave a request — a dedicated manager will reach out within 30 minutes with a tailored offer.",
+    "phone": "Phone",
+    "email": "Email",
+    "hq": "Headquarters",
+    "hqAddr": "Kyiv, 100 Velyka Vasylkivska St.",
+    "hours": "Working hours",
+    "hoursV": "Mon–Fri · 09:00–19:00 (CET)"
+  },
+  "form": {
+    "name": "Name",
     "company": "Company",
-    "contacts": "Contacts",
-    "rights": "All rights reserved",
-    "privacy": "Privacy Policy"
+    "phone": "Phone",
+    "email": "Email",
+    "service": "Service",
+    "budget": "Estimated budget",
+    "msg": "Cargo description / request",
+    "svc": {
+      "auto": "Road freight",
+      "air": "Air freight",
+      "sea": "Ocean freight",
+      "rail": "Rail freight",
+      "cust": "Customs clearance",
+      "wh": "Warehousing"
+    },
+    "b1": "Up to €5,000",
+    "b2": "€5,000 – €25,000",
+    "b3": "€25,000 – €100,000",
+    "b4": "Over €100,000",
+    "consent": "By clicking the button, you agree to our privacy policy.",
+    "send": "Send request",
+    "ok": { "t": "Thank you!", "d": "A manager will contact you within 30 minutes." }
+  },
+  "foot": {
+    "about": "International logistics company since 2008. Ukraine, Poland, Spain + 20 partner countries.",
+    "h": { "svc": "Services", "co": "Company", "contact": "Contact" },
+    "l": {
+      "auto": "Road", "air": "Air", "sea": "Sea", "rail": "Rail", "cust": "Customs", "wh": "Warehouse",
+      "about": "About", "career": "Careers", "news": "News", "docs": "Documents",
+      "addr": "Kyiv · Lviv · Odesa"
+    },
+    "copy": "© 2008–2026 Corcel. All rights reserved.",
+    "policy": "Privacy policy · Terms of use"
   }
 }

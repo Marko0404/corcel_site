@@ -1,12 +1,13 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/home/Hero';
-import Stats from '@/components/home/Stats';
 import Services from '@/components/home/Services';
-import WhyCorcel from '@/components/home/WhyCorcel';
-import Offices from '@/components/home/Offices';
 import Calculator from '@/components/home/Calculator';
-import BlogPreview from '@/components/home/BlogPreview';
+import Stats from '@/components/home/Stats';
+import Offices from '@/components/home/Offices';
+import Routes from '@/components/home/Routes';
+import Process from '@/components/home/Process';
+import ContactForm from '@/components/home/ContactForm';
 
 export default function HomePage() {
   return (
@@ -14,12 +15,13 @@ export default function HomePage() {
       <Header />
       <main>
         <Hero />
-        <Stats />
         <Services />
-        <WhyCorcel />
-        <Offices />
         <Calculator />
-        <BlogPreview />
+        <Stats />
+        <Offices />
+        <Routes />
+        <Process />
+        <ContactForm />
       </main>
       <Footer />
     </>

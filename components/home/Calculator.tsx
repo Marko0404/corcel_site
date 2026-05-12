@@ -2,176 +2,196 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
-import { Send, CheckCircle } from 'lucide-react';
+import Reveal from '@/components/ui/Reveal';
 
-const steps = [
-  { id: 1, label: 'Маршрут' },
-  { id: 2, label: 'Вантаж' },
-  { id: 3, label: 'Контакти' },
+const MODES = [
+  { key: 'auto', base: 0.85, eta: 3, icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1.5" y="6.5" width="13" height="9" rx="1"/><path d="M14.5 9.5h4l3 3v3h-7"/><circle cx="6" cy="17.5" r="2"/><circle cx="17.5" cy="17.5" r="2"/>
+    </svg>
+  )},
+  { key: 'air', base: 3.20, eta: 1, icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 12l20-7-7 20-2.5-9.5L2 12z"/>
+    </svg>
+  )},
+  { key: 'sea', base: 0.35, eta: 14, icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 17.5l9-3 9 3"/><path d="M5 14V8l7-3 7 3v6"/>
+    </svg>
+  )},
+  { key: 'rail', base: 0.55, eta: 8, icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="5" y="3" width="14" height="14" rx="2"/><path d="M5 11h14"/>
+    </svg>
+  )},
 ];
 
+const FROM_OPTIONS = [
+  { label: 'Київ, Україна', dist: 0 },
+  { label: 'Львів, Україна', dist: 540 },
+  { label: 'Одеса, Україна', dist: 475 },
+  { label: 'Варшава, Польща', dist: 1200 },
+  { label: 'Гданськ, Польща', dist: 1480 },
+  { label: 'Мадрид, Іспанія', dist: 3700 },
+];
+
+const TO_OPTIONS = [
+  { label: 'Берлін, Німеччина', dist: 1320 },
+  { label: 'Гамбург, Німеччина', dist: 1560 },
+  { label: 'Роттердам, Нідерланди', dist: 2000 },
+  { label: 'Париж, Франція', dist: 2240 },
+  { label: 'Стамбул, Туреччина', dist: 1100 },
+  { label: 'Дубай, ОАЕ', dist: 3700 },
+  { label: 'Шанхай, Китай', dist: 8400 },
+];
+
+const URG_MULT = [1.0, 1.2, 1.8];
+
 export default function Calculator() {
-  const t = useTranslations('calculator');
-  const [step, setStep] = useState(1);
-  const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({
-    from: '', to: '', service: 'auto',
-    type: '', weight: '', volume: '',
-    name: '', phone: '', email: '',
-  });
+  const t = useTranslations('calc');
+  const [modeIdx, setModeIdx] = useState(0);
+  const [fromIdx, setFromIdx] = useState(0);
+  const [toIdx, setToIdx] = useState(0);
+  const [weight, setWeight] = useState(500);
+  const [vol, setVol] = useState(3);
+  const [urg, setUrg] = useState(1);
+  const [cust, setCust] = useState(180);
+  const [ins, setIns] = useState(80);
 
-  const set = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));
+  const mode = MODES[modeIdx];
+  const dist = FROM_OPTIONS[fromIdx].dist + TO_OPTIONS[toIdx].dist;
+  const chargeable = Math.max(weight, vol * 167);
+  const transport = Math.round(mode.base * chargeable * dist / 100);
+  const urgMult = URG_MULT[urg];
+  const total = Math.round((transport * urgMult) + cust + ins);
+  const eta = Math.ceil(mode.eta * (urg === 2 ? 0.6 : urg === 1 ? 0.85 : 1));
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
-  const inputClass = "w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-brand-dark placeholder-gray-400 focus:outline-none focus:border-brand-red focus:ring-2 focus:ring-brand-red/10 transition-all";
-  const selectClass = inputClass;
+  const urgLabel = urg === 0 ? t('urg.std') : urg === 1 ? t('urg.fast') : t('urg.exp');
 
   return (
-    <section id="calculator" className="py-24 bg-white">
-      <div className="container-custom">
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <span className="text-brand-red text-sm font-bold uppercase tracking-widest mb-3 block">
-              Калькулятор
-            </span>
-            <h2 className="text-4xl md:text-5xl font-black text-brand-dark mb-4">{t('title')}</h2>
-            <p className="text-gray-500 text-lg">{t('subtitle')}</p>
-          </motion.div>
+    <section className="s calc-section" id="calculator">
+      <div className="s-inner">
+        <Reveal>
+          <div className="s-head">
+            <div className="s-eyebrow">{t('eyebrow')}</div>
+            <h2 className="s-title">{t('title')}</h2>
+            <p className="s-sub">{t('sub')}</p>
+          </div>
+        </Reveal>
 
-          {submitted ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-green-50 border border-green-200 rounded-3xl p-12 text-center"
-            >
-              <CheckCircle size={56} className="text-green-500 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-brand-dark mb-2">Заявку отримано!</h3>
-              <p className="text-gray-500">Менеджер зв&apos;яжеться з вами протягом 1 години.</p>
-            </motion.div>
-          ) : (
-            <div className="bg-slate-50 rounded-3xl p-8 border border-gray-100">
-              {/* Step indicator */}
-              <div className="flex items-center justify-center gap-4 mb-8">
-                {steps.map((s, i) => (
-                  <div key={s.id} className="flex items-center gap-4">
-                    <button
-                      onClick={() => step > s.id && setStep(s.id)}
-                      className={`flex items-center gap-2 text-sm font-medium transition-all ${
-                        step === s.id ? 'text-brand-red' : step > s.id ? 'text-green-600' : 'text-gray-400'
-                      }`}
-                    >
-                      <span className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all ${
-                        step === s.id ? 'border-brand-red bg-brand-red text-white' :
-                        step > s.id ? 'border-green-500 bg-green-500 text-white' :
-                        'border-gray-300 text-gray-400'
-                      }`}>
-                        {step > s.id ? '✓' : s.id}
-                      </span>
-                      <span className="hidden sm:block">{s.label}</span>
-                    </button>
-                    {i < steps.length - 1 && (
-                      <div className={`h-px w-12 transition-colors ${step > s.id ? 'bg-green-400' : 'bg-gray-200'}`} />
-                    )}
-                  </div>
+        <Reveal>
+          <div className="calc">
+            {/* Left: inputs */}
+            <div>
+              <div className="calc-modes">
+                {MODES.map((m, i) => (
+                  <button
+                    key={m.key}
+                    className={`calc-mode${modeIdx === i ? ' active' : ''}`}
+                    onClick={() => setModeIdx(i)}
+                    type="button"
+                  >
+                    {m.icon}
+                    <span>{t(`m.${m.key}`)}</span>
+                  </button>
                 ))}
               </div>
 
-              <form onSubmit={handleSubmit}>
-                {step === 1 && (
-                  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5 block">{t('from')}</label>
-                        <input className={inputClass} placeholder="Наприклад: Київ, Польща" value={form.from} onChange={(e) => set('from', e.target.value)} required />
-                      </div>
-                      <div>
-                        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5 block">{t('to')}</label>
-                        <input className={inputClass} placeholder="Наприклад: Іспанія, Барселона" value={form.to} onChange={(e) => set('to', e.target.value)} required />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5 block">{t('service')}</label>
-                      <select className={selectClass} value={form.service} onChange={(e) => set('service', e.target.value)}>
-                        <option value="auto">{t('services.auto')}</option>
-                        <option value="air">{t('services.air')}</option>
-                        <option value="sea">{t('services.sea')}</option>
-                        <option value="rail">{t('services.rail')}</option>
-                      </select>
-                    </div>
-                    <button type="button" onClick={() => setStep(2)} className="w-full bg-brand-red text-white py-4 rounded-xl font-bold hover:bg-red-700 transition-colors mt-2">
-                      Далі →
-                    </button>
-                  </motion.div>
-                )}
-
-                {step === 2 && (
-                  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
-                    <div>
-                      <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5 block">{t('type')}</label>
-                      <input className={inputClass} placeholder="Наприклад: косметика, обладнання, одяг" value={form.type} onChange={(e) => set('type', e.target.value)} />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5 block">{t('weight')}</label>
-                        <input className={inputClass} type="number" placeholder="0" value={form.weight} onChange={(e) => set('weight', e.target.value)} />
-                      </div>
-                      <div>
-                        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5 block">{t('volume')}</label>
-                        <input className={inputClass} type="number" placeholder="0.00" step="0.01" value={form.volume} onChange={(e) => set('volume', e.target.value)} />
-                      </div>
-                    </div>
-                    <div className="flex gap-3 mt-2">
-                      <button type="button" onClick={() => setStep(1)} className="flex-1 py-4 rounded-xl font-bold border border-gray-200 text-gray-600 hover:border-gray-400 transition-colors">
-                        ← Назад
-                      </button>
-                      <button type="button" onClick={() => setStep(3)} className="flex-1 bg-brand-red text-white py-4 rounded-xl font-bold hover:bg-red-700 transition-colors">
-                        Далі →
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-
-                {step === 3 && (
-                  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
-                    <div>
-                      <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5 block">{t('name')}</label>
-                      <input className={inputClass} placeholder="Іван Іванов" value={form.name} onChange={(e) => set('name', e.target.value)} required />
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5 block">{t('phone')}</label>
-                        <input className={inputClass} type="tel" placeholder="+380 00 000 0000" value={form.phone} onChange={(e) => set('phone', e.target.value)} required />
-                      </div>
-                      <div>
-                        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5 block">{t('email')}</label>
-                        <input className={inputClass} type="email" placeholder="info@company.ua" value={form.email} onChange={(e) => set('email', e.target.value)} />
-                      </div>
-                    </div>
-                    <div className="flex gap-3 mt-2">
-                      <button type="button" onClick={() => setStep(2)} className="flex-1 py-4 rounded-xl font-bold border border-gray-200 text-gray-600 hover:border-gray-400 transition-colors">
-                        ← Назад
-                      </button>
-                      <button type="submit" className="flex-1 bg-brand-red text-white py-4 rounded-xl font-bold hover:bg-red-700 transition-colors flex items-center justify-center gap-2">
-                        <Send size={16} />
-                        {t('submit')}
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </form>
+              <div className="calc-grid">
+                <div className="calc-field">
+                  <label>{t('from')}</label>
+                  <select value={fromIdx} onChange={(e) => setFromIdx(+e.target.value)}>
+                    {FROM_OPTIONS.map((o, i) => (
+                      <option key={i} value={i}>{o.label}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="calc-field">
+                  <label>{t('to')}</label>
+                  <select value={toIdx} onChange={(e) => setToIdx(+e.target.value)}>
+                    {TO_OPTIONS.map((o, i) => (
+                      <option key={i} value={i}>{o.label}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="calc-field">
+                  <label>{t('weight')}</label>
+                  <input type="number" value={weight} min={1} max={40000} onChange={(e) => setWeight(+e.target.value)} />
+                </div>
+                <div className="calc-field">
+                  <label>{t('vol')}</label>
+                  <input type="number" value={vol} min={0.1} max={200} step={0.1} onChange={(e) => setVol(+e.target.value)} />
+                </div>
+                <div className="calc-field full calc-slider">
+                  <label>{t('urgency')}</label>
+                  <input type="range" min={0} max={2} value={urg} onChange={(e) => setUrg(+e.target.value)} />
+                  <div className="calc-slider-val">
+                    <span>{t('urg.std')}</span>
+                    <b>{urgLabel}</b>
+                    <span>{t('urg.exp')}</span>
+                  </div>
+                </div>
+                <div className="calc-field">
+                  <label>{t('cust')}</label>
+                  <select value={cust} onChange={(e) => setCust(+e.target.value)}>
+                    <option value={0}>{t('cust_no')}</option>
+                    <option value={180}>{t('cust_yes')}</option>
+                    <option value={420}>{t('cust_full')}</option>
+                  </select>
+                </div>
+                <div className="calc-field">
+                  <label>{t('ins')}</label>
+                  <select value={ins} onChange={(e) => setIns(+e.target.value)}>
+                    <option value={0}>{t('ins_no')}</option>
+                    <option value={80}>{t('ins_std')}</option>
+                    <option value={220}>{t('ins_ext')}</option>
+                  </select>
+                </div>
+              </div>
             </div>
-          )}
-        </div>
+
+            {/* Right: result */}
+            <div className="calc-result">
+              <div>
+                <div className="calc-result-label">{t('r.label')}</div>
+                <div className="calc-price">
+                  <span>{total.toLocaleString()}</span>
+                  <span className="cur">€</span>
+                </div>
+                <div className="calc-breakdown">
+                  <div className="calc-row">
+                    <span>{t('r.transport')}</span><b>{transport.toLocaleString()} €</b>
+                  </div>
+                  <div className="calc-row">
+                    <span>{t('r.cust')}</span><b>{cust} €</b>
+                  </div>
+                  <div className="calc-row">
+                    <span>{t('r.ins')}</span><b>{ins} €</b>
+                  </div>
+                  <div className="calc-row">
+                    <span>{t('r.urg')}</span><b>×{urgMult.toFixed(1)}</b>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="calc-eta">
+                  <div>
+                    <div className="calc-eta-label">{t('r.eta')}</div>
+                    <div className="calc-eta-val">
+                      {eta} <small style={{ fontSize: 14, color: 'rgba(255,255,255,.55)', fontWeight: 500 }}>{t('r.days')}</small>
+                    </div>
+                  </div>
+                </div>
+                <div className="calc-cta">
+                  <a href="#contact" className="btn btn-primary">
+                    <span>{t('r.cta')}</span> <span className="arr">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
