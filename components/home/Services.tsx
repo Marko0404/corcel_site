@@ -1,8 +1,10 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
+import Link from 'next/link';
 import Reveal from '@/components/ui/Reveal';
 
 export default async function Services() {
-  const t = await getTranslations('svc');
+  const [t, locale] = await Promise.all([getTranslations('svc'), getLocale()]);
+  const lp = locale === 'uk' ? '' : `/${locale}`;
 
   return (
     <section className="s" id="services">
@@ -17,7 +19,7 @@ export default async function Services() {
         <div className="services">
           {/* Auto — big dark */}
           <Reveal className="svc-wide">
-            <a className="svc dark" href="#">
+            <Link className="svc dark" href={`${lp}/services/auto`}>
               <div>
                 <div className="svc-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -36,12 +38,12 @@ export default async function Services() {
                 </div>
                 <span className="svc-link"><span>{t('more')}</span> <span className="arr">→</span></span>
               </div>
-            </a>
+            </Link>
           </Reveal>
 
           {/* Air */}
           <Reveal delay="d1">
-            <a className="svc" href="#">
+            <Link className="svc" href={`${lp}/services/air`}>
               <div>
                 <div className="svc-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -54,12 +56,12 @@ export default async function Services() {
               <div className="svc-foot">
                 <span className="svc-link"><span>{t('more')}</span> <span className="arr">→</span></span>
               </div>
-            </a>
+            </Link>
           </Reveal>
 
           {/* Sea — big red */}
           <Reveal delay="d2" className="svc-wide">
-            <a className="svc red" href="#">
+            <Link className="svc red" href={`${lp}/services/sea`}>
               <div>
                 <div className="svc-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -77,12 +79,12 @@ export default async function Services() {
                 </div>
                 <span className="svc-link"><span>{t('more')}</span> <span className="arr">→</span></span>
               </div>
-            </a>
+            </Link>
           </Reveal>
 
           {/* Rail */}
           <Reveal>
-            <a className="svc" href="#">
+            <Link className="svc" href={`${lp}/services/rail`}>
               <div>
                 <div className="svc-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -95,12 +97,12 @@ export default async function Services() {
               <div className="svc-foot">
                 <span className="svc-link"><span>{t('more')}</span> <span className="arr">→</span></span>
               </div>
-            </a>
+            </Link>
           </Reveal>
 
           {/* Customs */}
           <Reveal delay="d1">
-            <a className="svc" href="#">
+            <Link className="svc" href={`${lp}/services/cust`}>
               <div>
                 <div className="svc-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -113,12 +115,12 @@ export default async function Services() {
               <div className="svc-foot">
                 <span className="svc-link"><span>{t('more')}</span> <span className="arr">→</span></span>
               </div>
-            </a>
+            </Link>
           </Reveal>
 
           {/* Warehouse */}
           <Reveal delay="d2">
-            <a className="svc" href="#">
+            <Link className="svc" href={`${lp}/services/wh`}>
               <div>
                 <div className="svc-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -131,7 +133,7 @@ export default async function Services() {
               <div className="svc-foot">
                 <span className="svc-link"><span>{t('more')}</span> <span className="arr">→</span></span>
               </div>
-            </a>
+            </Link>
           </Reveal>
         </div>
       </div>

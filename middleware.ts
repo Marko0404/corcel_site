@@ -5,6 +5,7 @@ const routing = defineRouting({
   locales: ['uk', 'ru', 'en'],
   defaultLocale: 'uk',
   localePrefix: 'as-needed',
+  localeDetection: false,
 });
 
 export default createMiddleware(routing);

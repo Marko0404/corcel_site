@@ -116,20 +116,23 @@ export default function ContactForm() {
                       <textarea placeholder="..." />
                     </div>
                   </div>
-                  <a className="form-mail" href="mailto:logistic@corcel.com.ua">
+                  <a className="form-mail" href="tel:+380443333228">
                     <div className="form-mail-ico">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
-                        <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/>
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
                       </svg>
                     </div>
                     <div className="form-mail-l">
-                      <small>{tf('mailLabel')}</small>
-                      <b>logistic@corcel.com.ua</b>
+                      <small>{tf('callLabel')}</small>
+                      <b>+38 044 333 32 28</b>
                     </div>
                     <span className="arr">→</span>
                   </a>
                   <div className="form-foot">
-                    <div className="form-consent">{tf('consent')}</div>
+                    <label className="form-check">
+                      <input type="checkbox" required />
+                      <span>{tf('consent')}</span>
+                    </label>
                     <button type="submit" className="btn btn-primary">
                       <span>{tf('send')}</span> <span className="arr">→</span>
                     </button>

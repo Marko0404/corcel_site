@@ -17,6 +17,7 @@
     "sub": "Full-cycle international logistics from Ukraine to Europe and beyond. Road, air, sea, rail, customs and warehousing — in one system.",
     "cta1": "Calculate cost",
     "cta2": "Services",
+    "callNow": "Call now",
     "track": "Track shipment",
     "trackBtn": "Find"
   },
@@ -116,6 +117,7 @@
     "phone": "Phone",
     "email": "Email",
     "service": "Service",
+    "callLabel": "Call us directly",
     "mailLabel": "Or write to us directly",
     "msg": "Cargo description / request",
     "svc": {
@@ -140,9 +142,10 @@
     "l": {
       "auto": "Road", "air": "Air", "sea": "Sea", "rail": "Rail", "cust": "Customs", "wh": "Warehouse",
       "about": "About", "career": "Careers", "news": "News", "docs": "Documents",
-      "addr": "Kyiv · Lviv · Odesa"
+      "addr": "Kyiv · Dnipro · Kharkiv · Odesa"
     },
     "copy": "© 2008–2026 Corcel. All rights reserved.",
-    "policy": "Privacy policy · Terms of use"
+    "privacy": "Privacy policy",
+    "offer": "Public offer"
   }
 }
