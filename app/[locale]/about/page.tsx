@@ -2,6 +2,7 @@
 import { getTranslations } from 'next-intl/server';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import FAQ from '@/components/about/FAQ';
 
 export default async function AboutPage() {
   const t = await getTranslations('nav');
@@ -100,6 +101,7 @@ export default async function AboutPage() {
             </div>
           </div>
         </section>
+        <FAQ />
       </main>
       <Footer />
     </>
