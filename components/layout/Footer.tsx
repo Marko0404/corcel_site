@@ -57,16 +57,15 @@ export default async function Footer() {
             <li><Link href={`/${locale}/career`}>{t('l.career')}</Link></li>
             <li><Link href={`/${locale}/blog`}>{t('l.news')}</Link></li>
             <li><Link href={`/${locale}/reviews`}>Відгуки клієнтів</Link></li>
-            <li><a href="#">{t('l.docs')}</a></li>
           </ul>
         </div>
 
         <div>
           <h5>{t('h.contact')}</h5>
           <ul>
-            <li><a href="tel:+380443333228">UA +38 044 333 32 28</a></li>
-            <li><a href="tel:+34919018115">ES +34 91 901 81 15</a></li>
-            <li><a href="tel:+48422036144">PL +48 (42) 203 61 44</a></li>
+            <li><a href="tel:+380443333228" className="foot-tel">UA +38 044 333 32 28</a></li>
+            <li><a href="tel:+34919018115"  className="foot-tel">ES +34 91 901 81 15</a></li>
+            <li><a href="tel:+48422036144"  className="foot-tel">PL +48 (42) 203 61 44</a></li>
             <li><a href="mailto:logistic@corcel.com.ua">logistic@corcel.com.ua</a></li>
             <li><a href="#offices">{t('l.addr')}</a></li>
           </ul>

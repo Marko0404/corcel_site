@@ -34,7 +34,6 @@ export default async function CareerPage() {
                 { title: 'Митний брокер', dept: 'Митниця', loc: 'Київ, Одеса' },
                 { title: 'Диспетчер автомобільних перевезень', dept: 'Авто', loc: 'Дніпро, Харків' },
                 { title: 'Key Account Manager', dept: 'Продажі', loc: 'Київ / Remote' },
-                { title: 'Frontend Developer (Next.js)', dept: 'IT', loc: 'Remote' },
                 { title: 'Логіст морських перевезень', dept: 'Море', loc: 'Одеса' },
               ].map((job) => (
                 <div key={job.title} className="career-card">

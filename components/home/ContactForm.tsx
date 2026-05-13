@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import Reveal from '@/components/ui/Reveal';
 
@@ -131,7 +132,10 @@ export default function ContactForm() {
                   <div className="form-foot">
                     <label className="form-check">
                       <input type="checkbox" required />
-                      <span>{tf('consent')}</span>
+                      <span>
+                        Натискаючи кнопку, ви погоджуєтесь з{' '}
+                        <Link href="/privacy" style={{ color: 'var(--red)', textDecoration: 'underline' }}>політикою конфіденційності</Link>.
+                      </span>
                     </label>
                     <button type="submit" className="btn btn-primary">
                       <span>{tf('send')}</span> <span className="arr">→</span>
