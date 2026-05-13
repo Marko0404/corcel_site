@@ -519,6 +519,20 @@ footer { padding: 64px 28px 40px; border-top: 1px solid var(--line); }
 .svc-page-cta { display: flex; gap: 12px; flex-wrap: wrap; }
 @media (max-width: 700px) { .svc-features { grid-template-columns: 1fr; } }
 
+/* SERVICE LONG-FORM CONTENT */
+.svc-long { margin-top: 56px; border-top: 1px solid var(--border); padding-top: 56px; }
+.svc-long-intro { font-size: 18px; line-height: 1.75; color: var(--ink-2); max-width: 740px; margin-bottom: 48px; }
+.svc-long-section { margin-bottom: 40px; }
+.svc-long-h { font-size: 22px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 16px; color: var(--ink); }
+.svc-long-p { font-size: 16px; line-height: 1.7; color: var(--ink-2); margin-bottom: 16px; max-width: 720px; }
+.svc-long-list { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 0; }
+.svc-long-list li { font-size: 16px; line-height: 1.6; color: var(--ink-2); padding-left: 24px; position: relative; }
+.svc-long-list li::before { content: '—'; position: absolute; left: 0; color: var(--red); font-weight: 700; }
+.svc-long-ol { counter-reset: svc-ol; }
+.svc-long-ol li { counter-increment: svc-ol; }
+.svc-long-ol li::before { content: counter(svc-ol) '.'; color: var(--red); font-weight: 700; }
+.svc-long-closing { font-size: 17px; font-weight: 700; color: var(--ink); margin-top: 48px; padding: 24px 32px; background: var(--bg-soft); border-radius: 16px; border-left: 4px solid var(--red); }
+
 /* CAREER PAGE */
 .career-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 48px; }
 .career-card { background: var(--bg-soft); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; }
