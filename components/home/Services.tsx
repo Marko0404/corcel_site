@@ -16,8 +16,8 @@ export default async function Services() {
         </Reveal>
         <div className="services">
           {/* Auto — big dark */}
-          <Reveal>
-            <a className="svc big dark" href="#">
+          <Reveal className="svc-wide">
+            <a className="svc dark" href="#">
               <div>
                 <div className="svc-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -58,8 +58,8 @@ export default async function Services() {
           </Reveal>
 
           {/* Sea — big red */}
-          <Reveal delay="d2">
-            <a className="svc big red" href="#">
+          <Reveal delay="d2" className="svc-wide">
+            <a className="svc red" href="#">
               <div>
                 <div className="svc-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
