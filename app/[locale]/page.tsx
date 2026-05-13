@@ -4,6 +4,7 @@ import Hero from '@/components/home/Hero';
 import Services from '@/components/home/Services';
 import Calculator from '@/components/home/Calculator';
 import Stats from '@/components/home/Stats';
+import Clients from '@/components/home/Clients';
 import Offices from '@/components/home/Offices';
 import Routes from '@/components/home/Routes';
 import Process from '@/components/home/Process';
@@ -18,6 +19,7 @@ export default function HomePage() {
         <Services />
         <Calculator />
         <Stats />
+        <Clients />
         <Offices />
         <Routes />
         <Process />
