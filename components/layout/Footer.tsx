@@ -56,6 +56,7 @@ export default async function Footer() {
             <li><a href="#">{t('l.about')}</a></li>
             <li><Link href={`/${locale}/career`}>{t('l.career')}</Link></li>
             <li><Link href={`/${locale}/blog`}>{t('l.news')}</Link></li>
+            <li><Link href={`/${locale}/reviews`}>Відгуки клієнтів</Link></li>
             <li><a href="#">{t('l.docs')}</a></li>
           </ul>
         </div>

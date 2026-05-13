@@ -40,7 +40,7 @@ export default function OfferPage() {
             <h2>9. Контакти Виконавця</h2>
             <p>ТОВ «Корсель»<br />
             бульвар Тараса Шевченка, 33Б, Київ, 01032<br />
-            Email: <a href="mailto:legal@corcel.com.ua">legal@corcel.com.ua</a><br />
+            Email: <a href="mailto:logistic@corcel.com.ua">logistic@corcel.com.ua</a><br />
             Тел: <a href="tel:+380443333228">+38 044 333 32 28</a></p>
           </div>
         </section>

@@ -45,7 +45,7 @@ export default function PrivacyPage() {
               <li>Вимагати виправлення або видалення даних</li>
               <li>Відкликати згоду на обробку</li>
             </ul>
-            <p>Для реалізації прав надішліть запит на <a href="mailto:legal@corcel.com.ua">legal@corcel.com.ua</a>.</p>
+            <p>Для реалізації прав надішліть запит на <a href="mailto:logistic@corcel.com.ua">logistic@corcel.com.ua</a>.</p>
 
             <h2>6. Cookies</h2>
             <p>Сайт використовує технічні cookies, необхідні для функціонування. Аналітичні cookies використовуються тільки за згодою. Ви можете відключити cookies в налаштуваннях браузера.</p>
@@ -56,7 +56,7 @@ export default function PrivacyPage() {
             <h2>8. Контакти</h2>
             <p>З питань обробки персональних даних звертайтесь:<br />
             ТОВ «Корсель», бульвар Тараса Шевченка, 33Б, Київ, 01032<br />
-            Email: <a href="mailto:legal@corcel.com.ua">legal@corcel.com.ua</a><br />
+            Email: <a href="mailto:logistic@corcel.com.ua">logistic@corcel.com.ua</a><br />
             Тел: <a href="tel:+380443333228">+38 044 333 32 28</a></p>
           </div>
         </section>

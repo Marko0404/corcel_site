@@ -38,8 +38,8 @@ export default function CareerForm() {
         </div>
         <h3>Заявку отримано!</h3>
         <p>Наш HR-менеджер розгляне вашу анкету та зв&apos;яжеться з вами протягом 2–3 робочих днів.</p>
-        <a href="mailto:hr@corcel.com.ua" className="btn btn-outline" style={{ marginTop: 24 }}>
-          Написати напряму → hr@corcel.com.ua
+        <a href="mailto:logistic@corcel.com.ua" className="btn btn-outline" style={{ marginTop: 24 }}>
+          Написати напряму → logistic@corcel.com.ua
         </a>
       </div>
     );

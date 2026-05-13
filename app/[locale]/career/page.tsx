@@ -72,7 +72,7 @@ export default async function CareerPage() {
                   </div>
                   <div>
                     <div style={{ fontSize: 12, color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '.06em' }}>HR відділ</div>
-                    <a href="mailto:hr@corcel.com.ua" style={{ fontSize: 15, fontWeight: 700, color: 'var(--red)' }}>hr@corcel.com.ua</a>
+                    <a href="mailto:logistic@corcel.com.ua" style={{ fontSize: 15, fontWeight: 700, color: 'var(--red)' }}>logistic@corcel.com.ua</a>
                   </div>
                 </div>
               </div>
