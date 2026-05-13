@@ -1,6 +1,8 @@
+/* eslint-disable react/no-unescaped-entities */
 import { getTranslations } from 'next-intl/server';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import CareerForm from '@/components/career/CareerForm';
 
 export default async function CareerPage() {
   const t = await getTranslations('nav');
@@ -9,16 +11,23 @@ export default async function CareerPage() {
     <>
       <Header />
       <main style={{ paddingTop: 80 }}>
-        <section className="s">
+        {/* Hero */}
+        <section className="s" style={{ background: 'var(--bg-soft)' }}>
           <div className="s-inner" style={{ paddingTop: 80, paddingBottom: 80 }}>
             <div className="s-eyebrow">Corcel · {t('career')}</div>
             <h1 className="s-title" style={{ maxWidth: 700 }}>
               Ми шукаємо людей, які рухають вантажі.
             </h1>
             <p className="s-sub" style={{ maxWidth: 560 }}>
-              Corcel — це команда логістів, IT-фахівців та менеджерів з 18 офісів по всій Україні та Європі. Якщо ти хочеш будувати логістику майбутнього — напиши нам.
+              Corcel — це команда логістів, IT-фахівців та менеджерів з офісів по всій Україні та Європі. Якщо ти хочеш будувати логістику майбутнього — надсилай заявку.
             </p>
+          </div>
+        </section>
 
+        {/* Open positions */}
+        <section className="s">
+          <div className="s-inner" style={{ paddingTop: 64, paddingBottom: 64 }}>
+            <h2 className="s-title" style={{ fontSize: 32, marginBottom: 32 }}>Відкриті вакансії</h2>
             <div className="career-grid">
               {[
                 { title: 'Менеджер з міжнародних перевезень', dept: 'Операції', loc: 'Київ / Remote' },
@@ -37,18 +46,38 @@ export default async function CareerPage() {
                     </svg>
                     {job.loc}
                   </div>
-                  <a href="mailto:hr@corcel.com.ua" className="btn btn-outline" style={{ marginTop: 16, fontSize: 14, padding: '10px 18px' }}>
-                    Відгукнутись →
-                  </a>
                 </div>
               ))}
             </div>
+          </div>
+        </section>
 
-            <div style={{ marginTop: 48, padding: '32px', background: 'var(--bg-soft)', borderRadius: 20, maxWidth: 560 }}>
-              <p style={{ color: 'var(--muted)', fontSize: 15 }}>
-                Не знайшли підходящої вакансії? Надішліть резюме на{' '}
-                <a href="mailto:hr@corcel.com.ua" style={{ color: 'var(--red)' }}>hr@corcel.com.ua</a> — ми зберігаємо всі анкети.
-              </p>
+        {/* Application form */}
+        <section className="s" id="apply" style={{ background: 'var(--bg-soft)' }}>
+          <div className="s-inner" style={{ paddingTop: 64, paddingBottom: 80 }}>
+            <div className="career-form-wrap">
+              <div className="career-form-header">
+                <div className="s-eyebrow">HR · Corcel</div>
+                <h2 style={{ fontSize: 'clamp(28px,4vw,40px)', fontWeight: 800, letterSpacing: '-.03em', marginBottom: 12 }}>
+                  Надішліть заявку
+                </h2>
+                <p style={{ color: 'var(--muted)', fontSize: 16, lineHeight: 1.6, maxWidth: 460 }}>
+                  Заповніть форму і наш HR-менеджер зв'яжеться з вами. Можна прикріпити резюме у форматі PDF або Word.
+                </p>
+                <div className="career-hr-contact">
+                  <div className="career-hr-ico">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 12, color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '.06em' }}>HR відділ</div>
+                    <a href="mailto:hr@corcel.com.ua" style={{ fontSize: 15, fontWeight: 700, color: 'var(--red)' }}>hr@corcel.com.ua</a>
+                  </div>
+                </div>
+              </div>
+
+              <CareerForm />
             </div>
           </div>
         </section>
