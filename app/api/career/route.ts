@@ -4,6 +4,18 @@ import { Resend } from 'resend';
 const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'logistic@corcel.com.ua';
 const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN;
 const TG_CHAT_ID = process.env.TG_CHAT_ID;
+const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET;
+
+async function verifyRecaptcha(token: string): Promise<boolean> {
+  if (!RECAPTCHA_SECRET) return true;
+  const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `secret=${RECAPTCHA_SECRET}&response=${token}`,
+  });
+  const data = await res.json() as { success: boolean; score: number };
+  return data.success && data.score >= 0.5;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -14,9 +26,15 @@ export async function POST(req: NextRequest) {
     const position = form.get('position') as string;
     const comment = form.get('comment') as string;
     const cvFile = form.get('cv') as File | null;
+    const recaptchaToken = form.get('recaptchaToken') as string | null;
 
     if (!name || !phone || !email) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
+
+    if (recaptchaToken) {
+      const ok = await verifyRecaptcha(recaptchaToken);
+      if (!ok) return NextResponse.json({ error: 'reCAPTCHA failed' }, { status: 400 });
     }
 
     await Promise.allSettled([

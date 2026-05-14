@@ -27,6 +27,9 @@ export default async function LocaleLayout({
           {children}
         </NextIntlClientProvider>
 
+        {/* Google reCAPTCHA v3 */}
+        <Script src="https://www.google.com/recaptcha/api.js?render=6Lcjv-ksAAAAACV7wxHsiyyHevX0Z8lA2OhSuJYT" strategy="afterInteractive" />
+
         {/* Google Analytics */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-B7DCR9L3K2" strategy="afterInteractive" />
         <Script id="ga4" strategy="afterInteractive">{`

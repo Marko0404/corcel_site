@@ -19,7 +19,17 @@ export default function ContactForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(fields) });
+      let recaptchaToken = '';
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const gr = (window as any).grecaptcha;
+      if (gr) {
+        recaptchaToken = await gr.execute('6Lcjv-ksAAAAACV7wxHsiyyHevX0Z8lA2OhSuJYT', { action: 'contact' });
+      }
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...fields, recaptchaToken }),
+      });
     } catch {}
     setLoading(false);
     setSubmitted(true);

@@ -30,6 +30,12 @@ export default function CareerForm() {
     try {
       const form = e.currentTarget;
       const fd = new FormData(form);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const gr = (window as any).grecaptcha;
+      if (gr) {
+        const token = await gr.execute('6Lcjv-ksAAAAACV7wxHsiyyHevX0Z8lA2OhSuJYT', { action: 'career' });
+        fd.append('recaptchaToken', token);
+      }
       await fetch('/api/career', { method: 'POST', body: fd });
     } catch {}
     setLoading(false);

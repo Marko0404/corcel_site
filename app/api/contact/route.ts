@@ -5,14 +5,31 @@ const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'logistic@corcel.com.ua';
 const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN;
 const TG_CHAT_ID = process.env.TG_CHAT_ID;
 const KEYCRM_API_KEY = process.env.KEYCRM_API_KEY;
+const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET;
+
+async function verifyRecaptcha(token: string): Promise<boolean> {
+  if (!RECAPTCHA_SECRET) return true;
+  const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `secret=${RECAPTCHA_SECRET}&response=${token}`,
+  });
+  const data = await res.json() as { success: boolean; score: number };
+  return data.success && data.score >= 0.5;
+}
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, company, phone, email, service, message } = body;
+    const { name, company, phone, email, service, message, recaptchaToken } = body;
 
     if (!name || !phone || !email) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
+
+    if (recaptchaToken) {
+      const ok = await verifyRecaptcha(recaptchaToken);
+      if (!ok) return NextResponse.json({ error: 'reCAPTCHA failed' }, { status: 400 });
     }
 
     const results = await Promise.allSettled([
