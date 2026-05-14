@@ -9,6 +9,21 @@ export default function ContactForm() {
   const t = useTranslations('contact');
   const tf = useTranslations('form');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [fields, setFields] = useState({ name: '', company: '', phone: '', email: '', service: '', message: '' });
+
+  const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+    setFields(f => ({ ...f, [k]: e.target.value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(fields) });
+    } catch {}
+    setLoading(false);
+    setSubmitted(true);
+  };
 
   return (
     <section className="s contact-section" id="contact">
@@ -71,7 +86,7 @@ export default function ContactForm() {
           </Reveal>
 
           <Reveal delay="d1">
-            <form className="form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
+            <form className="form" onSubmit={handleSubmit}>
               {submitted ? (
                 <div className="form-ok on">
                   <div className="form-ok-ico">
@@ -87,23 +102,23 @@ export default function ContactForm() {
                   <div className="form-grid">
                     <div className="form-field">
                       <label>{tf('name')}</label>
-                      <input type="text" required placeholder="Олександр" />
+                      <input type="text" required placeholder="Олександр" value={fields.name} onChange={set('name')} />
                     </div>
                     <div className="form-field">
                       <label>{tf('company')}</label>
-                      <input type="text" placeholder="ТОВ «...»" />
+                      <input type="text" placeholder="ТОВ «...»" value={fields.company} onChange={set('company')} />
                     </div>
                     <div className="form-field">
                       <label>{tf('phone')}</label>
-                      <input type="tel" required placeholder="+380 ..." />
+                      <input type="tel" required placeholder="+380 ..." value={fields.phone} onChange={set('phone')} />
                     </div>
                     <div className="form-field">
                       <label>{tf('email')}</label>
-                      <input type="email" required placeholder="you@company.com" />
+                      <input type="email" required placeholder="you@company.com" value={fields.email} onChange={set('email')} />
                     </div>
                     <div className="form-field">
                       <label>{tf('service')}</label>
-                      <select>
+                      <select value={fields.service} onChange={set('service')}>
                         <option>{tf('svc.auto')}</option>
                         <option>{tf('svc.air')}</option>
                         <option>{tf('svc.sea')}</option>
@@ -114,7 +129,7 @@ export default function ContactForm() {
                     </div>
                     <div className="form-field full">
                       <label>{tf('msg')}</label>
-                      <textarea placeholder="..." />
+                      <textarea placeholder="..." value={fields.message} onChange={set('message')} />
                     </div>
                   </div>
                   <a className="form-mail" href="tel:+380443333228">
@@ -137,8 +152,8 @@ export default function ContactForm() {
                         <Link href="/privacy" style={{ color: 'var(--red)', textDecoration: 'underline' }}>політикою конфіденційності</Link>.
                       </span>
                     </label>
-                    <button type="submit" className="btn btn-primary">
-                      <span>{tf('send')}</span> <span className="arr">→</span>
+                    <button type="submit" className="btn btn-primary" disabled={loading}>
+                      <span>{loading ? '...' : tf('send')}</span> {!loading && <span className="arr">→</span>}
                     </button>
                   </div>
                 </>
