@@ -75,6 +75,7 @@ async function createKeyCRMLead(data: Record<string, string>) {
       phone: data.phone,
       email: data.email,
       source_name: 'Сайт corcel.com.ua',
+      funnel_id: 24,
       notes: `Компанія: ${data.company || '—'}\nПослуга: ${data.service || '—'}\nПовідомлення: ${data.message || '—'}`,
     }),
   });
