@@ -2,12 +2,16 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { BLOG_POSTS, getPostBySlug } from '@/lib/blog';
+import { BLOG_POSTS, getPostBySlug as getStaticPost } from '@/lib/blog';
+import { getPostBySlug as getSanityPost } from '@/lib/sanity';
+import { PortableText } from '@portabletext/react';
 import { getLocale } from 'next-intl/server';
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return BLOG_POSTS.map((p) => ({ slug: p.slug }));
 }
+
+export const revalidate = 60;
 
 const CAT_COLOR: Record<string, string> = {
   'Новини': 'var(--red)',
@@ -22,11 +26,53 @@ export default async function BlogPostPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
-  if (!post) notFound();
-
   const locale = await getLocale();
   const lp = locale === 'uk' ? '' : `/${locale}`;
+
+  const sanityPost = await getSanityPost(slug).catch(() => null);
+
+  if (sanityPost) {
+    return (
+      <>
+        <Header />
+        <main style={{ paddingTop: 80 }}>
+          <section className="s" style={{ background: 'var(--bg-soft)' }}>
+            <div className="s-inner" style={{ paddingTop: 64, paddingBottom: 56 }}>
+              <Link href={`${lp}/blog`} className="svc-back">← Всі статті</Link>
+              <div className="blog-post-cat" style={{ color: CAT_COLOR[sanityPost.category] || 'var(--red)' }}>
+                {sanityPost.category}
+              </div>
+              <h1 className="blog-post-title">{sanityPost.title}</h1>
+              <time className="blog-post-date">
+                {new Date(sanityPost.publishedAt).toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' })}
+              </time>
+            </div>
+          </section>
+          <section className="s">
+            <div className="s-inner" style={{ paddingTop: 56, paddingBottom: 80 }}>
+              <div className="blog-post-body">
+                {sanityPost.body ? (
+                  <PortableText value={sanityPost.body as Parameters<typeof PortableText>[0]['value']} />
+                ) : (
+                  <p>{sanityPost.excerpt}</p>
+                )}
+              </div>
+              <div className="svc-page-cta" style={{ marginTop: 56 }}>
+                <a href={`${lp}/#contact`} className="btn btn-primary">
+                  <span>Замовити перевезення</span> <span className="arr">→</span>
+                </a>
+                <Link href={`${lp}/blog`} className="btn btn-outline">← Всі статті</Link>
+              </div>
+            </div>
+          </section>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
+  const post = getStaticPost(slug);
+  if (!post) notFound();
 
   return (
     <>
@@ -44,7 +90,6 @@ export default async function BlogPostPage({
             </time>
           </div>
         </section>
-
         <section className="s">
           <div className="s-inner" style={{ paddingTop: 56, paddingBottom: 80 }}>
             <div className="blog-post-body">
@@ -52,14 +97,11 @@ export default async function BlogPostPage({
                 para.trim() ? <p key={i}>{para}</p> : <br key={i} />
               )}
             </div>
-
             <div className="svc-page-cta" style={{ marginTop: 56 }}>
               <a href={`${lp}/#contact`} className="btn btn-primary">
                 <span>Замовити перевезення</span> <span className="arr">→</span>
               </a>
-              <Link href={`${lp}/blog`} className="btn btn-outline">
-                ← Всі статті
-              </Link>
+              <Link href={`${lp}/blog`} className="btn btn-outline">← Всі статті</Link>
             </div>
           </div>
         </section>

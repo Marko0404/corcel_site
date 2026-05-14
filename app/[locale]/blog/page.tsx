@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { getAllPosts } from '@/lib/sanity';
 import { BLOG_POSTS } from '@/lib/blog';
 import { getLocale } from 'next-intl/server';
 
@@ -12,10 +13,23 @@ const CAT_COLOR: Record<string, string> = {
   'Перевезення': '#7c3aed',
 };
 
+export const revalidate = 60;
+
 export default async function BlogPage() {
   const t = await getTranslations('nav');
   const locale = await getLocale();
   const lp = locale === 'uk' ? '' : `/${locale}`;
+
+  const sanityPosts = await getAllPosts().catch(() => []);
+  const posts = sanityPosts.length > 0
+    ? sanityPosts.map((p) => ({
+        slug: p.slug.current,
+        title: p.title,
+        date: p.publishedAt,
+        cat: p.category,
+        excerpt: p.excerpt,
+      }))
+    : BLOG_POSTS;
 
   return (
     <>
@@ -34,7 +48,7 @@ export default async function BlogPage() {
         <section className="s">
           <div className="s-inner" style={{ paddingTop: 56, paddingBottom: 80 }}>
             <div className="blog-grid">
-              {BLOG_POSTS.map((post) => (
+              {posts.map((post) => (
                 <Link key={post.slug} href={`${lp}/blog/${post.slug}`} className="blog-card">
                   <div className="blog-card-cat" style={{ color: CAT_COLOR[post.cat] || 'var(--red)' }}>
                     {post.cat}

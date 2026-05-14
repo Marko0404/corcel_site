@@ -9,13 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@portabletext/react": "^6.2.0",
+    "@sanity/client": "^7.22.0",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^5.25.1",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.14.0",
     "next": "^15.5.18",
     "next-intl": "^4.11.2",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "resend": "^6.12.3"
+    "next-sanity": "^12.4.5",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "resend": "^6.12.3",
+    "sanity": "^5.25.1",
+    "styled-components": "^6.4.1"
   },
   "devDependencies": {
     "@types/node": "^20",
