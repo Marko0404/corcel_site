@@ -71,12 +71,14 @@ async function createKeyCRMLead(data: Record<string, string>) {
       'Authorization': `Bearer ${KEYCRM_API_KEY}`,
     },
     body: JSON.stringify({
-      full_name: data.name,
-      phone: data.phone,
-      email: data.email,
+      contact: {
+        full_name: data.name,
+        phone: data.phone,
+        email: data.email,
+      },
       source_name: 'Сайт corcel.com.ua',
-      funnel_id: 24,
-      notes: `Компанія: ${data.company || '—'}\nПослуга: ${data.service || '—'}\nПовідомлення: ${data.message || '—'}`,
+      pipeline_id: 24,
+      manager_comment: `Компанія: ${data.company || '—'}\nПослуга: ${data.service || '—'}\nПовідомлення: ${data.message || '—'}`,
     }),
   });
 }
