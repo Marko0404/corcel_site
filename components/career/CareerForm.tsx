@@ -15,6 +15,7 @@ const POSITIONS = [
 
 export default function CareerForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [fileName, setFileName] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -23,8 +24,15 @@ export default function CareerForm() {
     setFileName(f ? f.name : '');
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setLoading(true);
+    try {
+      const form = e.currentTarget;
+      const fd = new FormData(form);
+      await fetch('/api/career', { method: 'POST', body: fd });
+    } catch {}
+    setLoading(false);
     setSubmitted(true);
   }
 
@@ -46,23 +54,23 @@ export default function CareerForm() {
   }
 
   return (
-    <form className="career-form" onSubmit={handleSubmit} encType="multipart/form-data">
+    <form className="career-form" onSubmit={handleSubmit}>
       <div className="career-form-grid">
         <div className="form-field">
           <label>Ім&apos;я та прізвище *</label>
-          <input type="text" required placeholder="Олексій Коваленко" />
+          <input type="text" name="name" required placeholder="Олексій Коваленко" />
         </div>
         <div className="form-field">
           <label>Номер телефону *</label>
-          <input type="tel" required placeholder="+380 ..." />
+          <input type="tel" name="phone" required placeholder="+380 ..." />
         </div>
         <div className="form-field">
           <label>Електронна пошта *</label>
-          <input type="email" required placeholder="you@example.com" />
+          <input type="email" name="email" required placeholder="you@example.com" />
         </div>
         <div className="form-field">
           <label>Бажана посада *</label>
-          <select required defaultValue="">
+          <select name="position" required defaultValue="">
             <option value="" disabled>Оберіть позицію...</option>
             {POSITIONS.map((p) => (
               <option key={p} value={p}>{p}</option>
@@ -71,7 +79,7 @@ export default function CareerForm() {
         </div>
         <div className="form-field full">
           <label>Коментар</label>
-          <textarea placeholder="Розкажіть про свій досвід, очікувану зарплату або задайте питання..." rows={4} />
+          <textarea name="comment" placeholder="Розкажіть про свій досвід, очікувану зарплату або задайте питання..." rows={4} />
         </div>
         <div className="form-field full">
           <label>Резюме (CV)</label>
@@ -82,6 +90,7 @@ export default function CareerForm() {
             <input
               ref={fileRef}
               type="file"
+              name="cv"
               accept=".pdf,.doc,.docx"
               style={{ display: 'none' }}
               onChange={handleFile}
@@ -116,8 +125,8 @@ export default function CareerForm() {
             {' '}та даю згоду на обробку персональних даних відповідно до Закону України №2297-VI.
           </span>
         </label>
-        <button type="submit" className="btn btn-primary" style={{ whiteSpace: 'nowrap' }}>
-          <span>Надіслати заявку</span> <span className="arr">→</span>
+        <button type="submit" className="btn btn-primary" style={{ whiteSpace: 'nowrap' }} disabled={loading}>
+          <span>{loading ? '...' : 'Надіслати заявку'}</span> {!loading && <span className="arr">→</span>}
         </button>
       </div>
     </form>
